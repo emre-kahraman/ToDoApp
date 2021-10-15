@@ -2,10 +2,7 @@ package com.example.ToDoApp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +18,6 @@ public class ToDoController {
 
     @GetMapping
     public String home(Model model){
-        toDoService.addtodo(new ToDo("asd"));
         model.addAttribute("todos",toDoService.findAllToDos());
         model.addAttribute("newtodo", new ToDo());
         return "index";
@@ -30,6 +26,12 @@ public class ToDoController {
     @PostMapping
     public String addtodo(@ModelAttribute ToDo newtodo){
         toDoService.addtodo(newtodo);
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deletetodo(@PathVariable Long id){
+        toDoService.deletetodo(id);
         return "redirect:/";
     }
 

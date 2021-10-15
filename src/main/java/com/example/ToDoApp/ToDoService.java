@@ -19,6 +19,10 @@ public class ToDoService {
         return toDoRepository.findAll();
     }
 
+    public void deletetodo(Long id){
+        toDoRepository.delete(toDoRepository.getById(id));
+    }
+
     public ToDo addtodo(ToDo todo) {
         return toDoRepository.save(todo);
     }

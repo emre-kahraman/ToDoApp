@@ -8,6 +8,7 @@
 <table>
     <tr th:each="todo : ${todos}">
         <td th:text="${todo.context}"></td>
+        <td><a th:href="@{/delete/{id}(id=${todo.id})}">Delete</a></td>
     </tr>
 </table>
 <form method="post" th:action="@{/}" th:object="${newtodo}">
